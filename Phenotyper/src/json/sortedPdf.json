@@ -1,0 +1,249 @@
+[
+   {
+      "id":0,
+      "text":"... ms (e.g., ‘‘short\nand broad fingers’’ aligns to ‘‘short finger’’ [HP: 0009381] and\n‘‘broad finger’’ [HP: 0001500 ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":66,
+         "length":12,
+         "original_text":"short finger",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0009381",
+            "preferredLabel":"Short finger",
+            "synonyms":[
+               "Hypoplastic/small fingers",
+               "Hypoplastic digits",
+               "Stubby finger",
+               "Hypoplastic fingers"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":1,
+      "text":"... Stokes respiration’’ (MeSH: D002639), which is an\nabnormal breathing pattern that can be observed in diseases\nsuch as  ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":72,
+         "length":18,
+         "original_text":"abnormal breathing",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0005957",
+            "preferredLabel":"Breathing dysregulation",
+            "synonyms":[
+               "Abnormal breathing"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":2,
+      "text":"... vided for HPO terms. For\ninstance, the HPO term ‘‘hypoglycemia’’ is defined on\nthe basis of ‘‘decreased concentr ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":66,
+         "length":12,
+         "original_text":"hypoglycemia",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0001943",
+            "preferredLabel":"Hypoglycemia",
+            "synonyms":[
+               "Low blood sugar",
+               "Hypoglycaemia"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":3,
+      "text":"... ’’ aligns to ‘‘short finger’’ [HP: 0009381] and\n‘‘broad finger’’ [HP: 0001500]), as well as recognize and proces ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":66,
+         "length":12,
+         "original_text":"broad finger",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0001500",
+            "preferredLabel":"Broad finger",
+            "synonyms":[
+               "Broad fingers",
+               "Wide fingers"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":4,
+      "text":"... ne might\nbe tempted to conclude that this type of encephalitis can be charac-\nterized by headaches, but from thi ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":66,
+         "length":12,
+         "original_text":"encephalitis",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0002383",
+            "preferredLabel":"Encephalitis",
+            "synonyms":[
+               "Brain inflammation"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":5,
+      "text":"...  Informatics and Information Technology, National Cancer Insti-\ntute, 9609 Medical Center Drive, Rockville ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":60,
+         "length":6,
+         "original_text":"Cancer",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0002664",
+            "preferredLabel":"Neoplasm",
+            "synonyms":[
+               "Oncological abnormality",
+               "Tumor",
+               "Oncology",
+               "Tumour",
+               "Neoplasia",
+               "Cancer"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":6,
+      "text":"...  pattern that can be observed in diseases\nsuch as central sleep apnea syndrome. We excluded such MeSH\nentries by carefu ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":73,
+         "length":19,
+         "original_text":"central sleep apnea",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0010536",
+            "preferredLabel":"Central sleep apnea",
+            "synonyms":[
+               "Central sleep apnoea"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":7,
+      "text":"... e (MIM: 154700) is annotated with the HPO\nterms ‘‘arachnodactyly’’ (HP: 0001166), ‘‘ectopia lentis’’\n(HP: 0001083) ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":68,
+         "length":14,
+         "original_text":"arachnodactyly",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0001166",
+            "preferredLabel":"Arachnodactyly",
+            "synonyms":[
+               "Long, slender fingers",
+               "Spider fingers",
+               "Long slender fingers"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":9,
+      "text":"... is type of encephalitis can be charac-\nterized by headaches, but from this single observation it cannot be\ngu ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":63,
+         "length":9,
+         "original_text":"headaches",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0002315",
+            "preferredLabel":"Headache",
+            "synonyms":[
+               "Headaches"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":10,
+      "text":"... 56) within an abstract that contains the\nphrase ‘‘large head’’ because the latter is listed as a synonym in\nth ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":64,
+         "length":10,
+         "original_text":"large head",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0000256",
+            "preferredLabel":"Macrocephaly",
+            "synonyms":[
+               "Large head circumference",
+               "Macrocrania",
+               "Large head",
+               "Increased size of cranium",
+               "Increased size of skull"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":12,
+      "text":"... the HPO\nterms ‘‘arachnodactyly’’ (HP: 0001166), ‘‘ectopia lentis’’\n(HP: 0001083), and 46 others. The patterns and  ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":68,
+         "length":14,
+         "original_text":"ectopia lentis",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0001083",
+            "preferredLabel":"Ectopia lentis",
+            "synonyms":[
+               "Abnormality of lens position",
+               "Dislocated lens",
+               "Dislocated lenses",
+               "Lens dislocation"
+            ]
+         },
+         "negated":false
+      }
+   },
+   {
+      "id":14,
+      "text":"... er than actual disease entities; one example\nis ‘‘Cheyne-Stokes respiration’’ (MeSH: D002639), which is an\nabnormal breathing ... ",
+      "annotation":{
+         "start_offset":54,
+         "end_offset":79,
+         "length":25,
+         "original_text":"Cheyne-Stokes respiration",
+         "source":"HPO",
+         "term":{
+            "uri":"HP:0012196",
+            "preferredLabel":"Cheyne-Stokes respiration",
+            "synonyms":[
+               "Periodic respiration"
+            ]
+         },
+         "negated":false
+      }
+   }
+]
