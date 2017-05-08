@@ -20,5 +20,5 @@
     "eject": "react-scripts eject",
     "deploy" : "npm run build&&gh-pages -d build"
   },
-  "homepage": "https://genome-one.github.io/monarch/"
+  "homepage": "https://genome-one.github.io/monarch/triptych/"
 }
