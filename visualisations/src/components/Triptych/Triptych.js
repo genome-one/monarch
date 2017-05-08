@@ -78,7 +78,7 @@ export default function Triptych({data}) {
                   value={item.similarity}
                   thickness="2"
                   scale="9"
-                  valueBarColor={determineColor(item.similarity)}
+                  valueBarColor="#e80"
                   style={{ margin: '0px 20px 15px 20px' }}
                 />
               </Middle>
@@ -96,9 +96,4 @@ export default function Triptych({data}) {
       }
     </Base>
   );
-}
-
-// The lower the similarity, the greener, vice versa, bluer.
-function determineColor(value) {
-  return `rgba(0 ,${200 - value}, ${100 + value}, 1)`;
 }
