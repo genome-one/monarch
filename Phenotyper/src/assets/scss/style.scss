@@ -502,8 +502,8 @@ $main-nav-color: linear-gradient(180deg, #337a9e, rgb(38, 179, 108));
       letter-spacing: 1px;
       font-weight: 400;
       font-size: 15px;
-      padding: 20px 20px 0 20px;
-      margin-bottom: 12px;
+      padding: 20px 20px 10px 20px;
+      border-bottom: thin solid #eee;
       .patient-name {
         &:hover {
           color: #02B875;

@@ -42,9 +42,9 @@ class PatientGrid extends Component {
 			border: backgroundCondition
 		}
 		return connectDropTarget(
-			<div className="patient-container col-md-5 col-sm-5 col-xs-6 flipInX animated">
+			<div className="patient-container col-md-5 col-sm-5 col-xs-6 flipInX animated" style={{marginBottom:10}}>
 				<PatientHeader patient={this.props.patient}/>
-				<div style={style} className="patient-body col-md-12 ">
+				<div style={style} className="patient-body col-md-12">
 					{uriBody}
 					{mutationBody}
 				</div>

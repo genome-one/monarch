@@ -38,17 +38,16 @@ class PatientList extends Component {
     const {connectDropTarget} = this.props;
     const backgroundCondition = this.props.isOver ? '1px dashed #26b36c' : '';
     var style = {
-      border: backgroundCondition,
-      marginLeft:'3em'
+      border: backgroundCondition
     }
     return connectDropTarget(
       <div className="patient-container col-md-12 col-sm-12 flipInX animated" style={{margin:0, marginBottom: 10}}>
         <PatientHeader patient={this.props.patient}/>
         <div style={style} className="patient-body col-md-12" >
-          <Row>
+          <Row style={{marginLeft:'2em', marginRight:'-13em'}}>
             {uriBody}
           </Row>
-          <Row>
+          <Row style={{marginLeft:'2em', marginRight:'-6em'}}>
             {mutationBody}
           </Row>
         </div>

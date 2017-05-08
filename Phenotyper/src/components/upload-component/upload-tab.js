@@ -94,7 +94,7 @@ const TextField = styled.textarea`
 const UploadButton = styled.button`
   margin: 18px 6px 0px 0px;
   border-style: none;
-  background-color: #26b36c;
+  background-color: ${props => props.clear ? '#d9534f' : '#26b36c'};
   color: white;
   padding: 11px 25px;
   text-align: center;
@@ -107,7 +107,7 @@ const UploadButton = styled.button`
   text-transform: uppercase;
 
   &:hover {
-    background-color: rgba(38, 179, 108, 0.74);
+    background-color: ${props => props.clear ? '#d43f3a' : 'rgba(38, 179, 108, 0.74)'};
   }
 `;
 /*
@@ -178,7 +178,7 @@ export class UploadTabComponent extends Component {
 
 
     // simple callback when we process the pdf file
-    this.callback = file => this.setLoader();
+    this.callback = file => this.setLoader(file);
     this.addedfile = file =>  console.log('added');
     this.success = file => this.getFileContent('uploaded',file);
     this.removedfile = file =>  this.getFileContent('removed',file);
@@ -198,7 +198,7 @@ export class UploadTabComponent extends Component {
   /* 
   * set status when file is processing
   */
-  setLoader() {
+  setLoader(file) {
     this.setState(setUploadState(this.state, '', true));
   }
   
@@ -263,7 +263,7 @@ export class UploadTabComponent extends Component {
             textToHighlight={this.state.uploadText}/>
           </HighLightContainer>
           <Col md={4}>
-          <UploadButton style={{ margin: '12px 0' }} onClick={this.cleanFile}>
+          <UploadButton style={{ margin: '12px 0' }} onClick={this.cleanFile} clear>
             Clear
           </UploadButton>
           </Col>

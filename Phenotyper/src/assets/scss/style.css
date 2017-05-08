@@ -371,8 +371,8 @@ q {
       letter-spacing: 1px;
       font-weight: 400;
       font-size: 15px;
-      padding: 20px 20px 0 20px;
-      margin-bottom: 12px; }
+      padding: 20px 20px 10px 20px;
+      border-bottom: thin solid #eee; }
       .tab-content-container .pheno-body-container .patient-header .patient-name:hover {
         color: #02B875; }
       .tab-content-container .pheno-body-container .patient-header .patient-header-btn {

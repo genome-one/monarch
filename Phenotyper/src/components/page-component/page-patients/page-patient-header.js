@@ -41,7 +41,7 @@ class PatientHeader extends Component {
   }
   render() {
     return(
-      <div className="col-md-12 patient-header">
+      <div className="col-md-10 col-md-offset-1 patient-header">
         <span className="patient-name">{this.props.patient.name}</span>
         <BlockButton 
           bsSize="xsmall"
