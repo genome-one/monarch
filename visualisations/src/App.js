@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Triptych from './components/Triptych/Triptych'
-import triptychTestData from './components/Triptych/Triptych.testData'
+import Routes from './components/Routes.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Triptych data={triptychTestData()} />
+        <Routes />
       </div>
     );
   }

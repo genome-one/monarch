@@ -66,7 +66,7 @@ const Value = styled.span`
 `;
 
 /**
- * Triptych visualisation
+ * Radial graph.
  */
 export default function Radial({value, thickness, style, scale, valueBarColor}) {
   if(!scale) thickness = 10;
