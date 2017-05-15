@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter,
+  HashRouter,
   Route
 } from 'react-router-dom';
 
@@ -11,11 +11,11 @@ import radarTestData from './Radar/Radar.testData';
 
 export default function Routes() {
   return (
-    <BrowserRouter key={Math.random()}>
+    <HashRouter key={Math.random()}>
       <div>
         <Route path="/triptych" component={() => <Triptych data={triptychTestData()}/>} />
         <Route path="/radar" component={() => <Radar data={radarTestData()}/>} />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
