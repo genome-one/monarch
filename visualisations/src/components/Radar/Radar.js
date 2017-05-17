@@ -16,7 +16,7 @@ function radarChart(id, data, options) {
    w: 600,				//Width of the circle
    h: 600,				//Height of the circle
    margin: {top: 100, right: 100, bottom: 100, left: 100}, //The margins of the SVG
-   levels: 3,				//How many levels or inner circles should there be drawn
+   levels: 6,				//How many levels or inner circles should there be drawn
    maxValue: 0, 			//What is the value that the biggest circle will represent
    labelFactor: 1.15, 	//How much farther than the radius of the outer circle should the labels be placed
    wrapWidth: 60, 		//The number of pixels after which a label needs to be given a new line
