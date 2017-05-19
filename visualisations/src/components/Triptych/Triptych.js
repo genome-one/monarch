@@ -19,7 +19,11 @@ const Base = styled.table`
 `;
 
 const ProgressBarFlipped = styled(ProgressBar)`
-  transform: rotate(180deg) !important;
+  transform: scale(-1, 1) !important;
+
+  .progress-bar {
+    transform: scale(-1, 1);
+  }
 `;
 
 const Left = styled.td`
@@ -46,30 +50,34 @@ const Right = styled.td`
 export default function Triptych({data}) {
   return (
     <Base>
-      <tr>
-        <Left style={{ paddingBottom: 18 }}>
-          <b>Searched Profile: <br />
-            {Object.keys(data[0])[0]}</b>
-        </Left>
-        
-        <Middle style={{ paddingBottom: 18 }}>
-          <b>SimScore</b>
-        </Middle>
-        
-        <Right style={{ paddingBottom: 18 }}>
-          <b>Matched Profile: <br />
-            {Object.keys(data[0])[1]}</b>
-        </Right>  
-      </tr>
+      <thead>
+        <tr>
+          <Left style={{ paddingBottom: 18 }}>
+            <b>Searched Profile: <br />
+              {Object.keys(data[0])[0]}</b>
+          </Left>
+
+          <Middle style={{ paddingBottom: 18 }}>
+            <b>SimScore</b>
+          </Middle>
+
+          <Right style={{ paddingBottom: 18 }}>
+            <b>Matched Profile: <br />
+              {Object.keys(data[0])[1]}</b>
+          </Right>  
+        </tr>
+      </thead>
+      <tbody>
       {
-        data.map((item) => {
+        data.map((item, $index) => {
           return(
-            <tr>
+            <tr key={$index}>
               <Left>
-                {item.phenotype1.label} ({item.phenotype1.informationContent})
+                {item.phenotype1.label}
                 <ProgressBarFlipped 
-                  now={item.phenotype1.informationContent} 
-                  max="15" 
+                  now={parseFloat(item.phenotype1.informationContent)} 
+                  max={16}
+                  label={item.phenotype1.informationContent}
                 />
               </Left>
               
@@ -84,16 +92,18 @@ export default function Triptych({data}) {
               </Middle>
               
               <Right>
-                {item.phenotype2.label} ({item.phenotype2.informationContent})
+                {item.phenotype2.label}
                 <ProgressBar 
-                  now={item.phenotype2.informationContent} 
-                  max="15" 
+                  now={parseFloat(item.phenotype2.informationContent)} 
+                  max={16}
+                  label={item.phenotype2.informationContent}
                 />
               </Right>
             </tr>
           )
         })
       }
+      </tbody>
     </Base>
   );
 }
