@@ -1,7 +1,7 @@
 export default function dataTriploidy() {
   return {
     "id": "#16:1098",
-    "expertLink": "http:\/\/www.orpha.net\/consor\/cgi-bin\/OC_Exp.php?lng=en&Expert=3376",
+    "expertLink": "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=en&Expert=3376",
     "name": "Triploidy",
     "disorderType": "Malformation syndrome",
     "flags": [
@@ -119,7 +119,7 @@ export default function dataTriploidy() {
         "source": "22234154[PMID]_EUROCAT European surveillance of congenital anomalies[REG]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "12.6",
         "geography": "Europe",
         "validationStatus": "Validated"
@@ -605,7 +605,7 @@ export default function dataTriploidy() {
           "classification": [
             {
               "id": "#13:5636",
-              "name": "Abnormality of metabolism\/homeostasis",
+              "name": "Abnormality of metabolism/homeostasis",
               "hasChildren": false
             }
           ]
@@ -675,7 +675,7 @@ export default function dataTriploidy() {
         "phenotype": {
           "id": "#13:899",
           "hpoId": "HP:0007370",
-          "name": "Aplasia\/Hypoplasia of the corpus callosum",
+          "name": "Aplasia/Hypoplasia of the corpus callosum",
           "classification": [
             {
               "id": "#13:6603",
@@ -691,7 +691,7 @@ export default function dataTriploidy() {
         "phenotype": {
           "id": "#13:8495",
           "hpoId": "HP:0008056",
-          "name": "Aplasia\/Hypoplasia affecting the eye",
+          "name": "Aplasia/Hypoplasia affecting the eye",
           "classification": [
             {
               "id": "#13:10529",

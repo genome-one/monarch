@@ -1,7 +1,7 @@
 export default function dataPhenylketonuria() {
   return {
     "id": "#16:499",
-    "expertLink": "http:\/\/www.orpha.net\/consor\/cgi-bin\/OC_Exp.php?lng=en&Expert=716",
+    "expertLink": "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=en&Expert=716",
     "name": "Phenylketonuria",
     "disorderType": "Disease",
     "synonyms": [
@@ -32,7 +32,7 @@ export default function dataPhenylketonuria() {
         "id": "#3:2098",
         "order": 3,
         "name": "Epidemiology",
-        "text": "The prevalence of PKU shows considerable geographic variation. It is estimated to be 1\/10,000 live births in Europe with a higher rate in some countries (Ireland, Italy). Prevalence is particularly high in Turkey: 1\/4,000 live births. PKU is far rarer in the Finnish, African and Japanese populations."
+        "text": "The prevalence of PKU shows considerable geographic variation. It is estimated to be 1/10,000 live births in Europe with a higher rate in some countries (Ireland, Italy). Prevalence is particularly high in Turkey: 1/4,000 live births. PKU is far rarer in the Finnish, African and Japanese populations."
       },
       {
         "id": "#3:2099",
@@ -44,7 +44,7 @@ export default function dataPhenylketonuria() {
         "id": "#3:2100",
         "order": 5,
         "name": "Etiology",
-        "text": "PKU is caused by a wide range of mutations in the <i>PAH<\/i> gene (12q22-q24.2) coding for phenylalanine hydroxylase. Non-<i>PAH<\/i> mutations have been reported to cause a disorder known as hyperphenylalaninemia due to BH4 deficiency (see this term). Mutation frequency varies among different ethnic groups. Lower levels or absence of the phenylalanine hydroxylase enzyme underlie the clinical manifestations, as a result of toxic accumulation of phenylalanine in the blood and brain."
+        "text": "PKU is caused by a wide range of mutations in the <i>PAH</i> gene (12q22-q24.2) coding for phenylalanine hydroxylase. Non-<i>PAH</i> mutations have been reported to cause a disorder known as hyperphenylalaninemia due to BH4 deficiency (see this term). Mutation frequency varies among different ethnic groups. Lower levels or absence of the phenylalanine hydroxylase enzyme underlie the clinical manifestations, as a result of toxic accumulation of phenylalanine in the blood and brain."
       },
       {
         "id": "#3:2101",
@@ -74,7 +74,7 @@ export default function dataPhenylketonuria() {
         "id": "#3:2104",
         "order": 10,
         "name": "Management and treatment",
-        "text": "The mainstay of treatment is a low-phenylalanine diet and amino acids mixture for the forms that require treatment. The recommended maintenance level is usually between 120 and 360 micromol\/L in newborns, with treatment considered essential in older patients with levels above 600 micromol\/L. There is, however, no consensus concerning the level of phenylalanine above which treatment should be initiated and recommendations vary from country to country."
+        "text": "The mainstay of treatment is a low-phenylalanine diet and amino acids mixture for the forms that require treatment. The recommended maintenance level is usually between 120 and 360 micromol/L in newborns, with treatment considered essential in older patients with levels above 600 micromol/L. There is, however, no consensus concerning the level of phenylalanine above which treatment should be initiated and recommendations vary from country to country."
       },
       {
         "id": "#3:2105",
@@ -151,7 +151,7 @@ export default function dataPhenylketonuria() {
         "source": "11641035[PMID]_17616847[PMID]_[EXPERT]_Haute Autorit\u00e9 de Sant\u00e9 2010[INST]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "6.0",
         "geography": "France",
         "validationStatus": "Validated"
@@ -161,7 +161,7 @@ export default function dataPhenylketonuria() {
         "source": "11641035[PMID]_17616847[PMID]_[EXPERT]_Haute Autorit\u00e9 de Sant\u00e9 2010[INST]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "France",
         "validationStatus": "Validated"
@@ -171,7 +171,7 @@ export default function dataPhenylketonuria() {
         "source": "20971365[PMID]_17616847[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "10.0",
         "geography": "Europe",
         "validationStatus": "Not yet validated"
@@ -181,7 +181,7 @@ export default function dataPhenylketonuria() {
         "source": "20971365[PMID]_17616847[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "0.0",
         "geography": "Europe",
         "validationStatus": "Not yet validated"
@@ -191,7 +191,7 @@ export default function dataPhenylketonuria() {
         "source": "16690699[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "8.0",
         "geography": "United Kingdom",
         "validationStatus": "Not yet validated"
@@ -201,7 +201,7 @@ export default function dataPhenylketonuria() {
         "source": "16690699[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "United Kingdom",
         "validationStatus": "Not yet validated"
@@ -211,7 +211,7 @@ export default function dataPhenylketonuria() {
         "source": "9254847[PMID]_[EXPERT]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "22.0",
         "geography": "Ireland",
         "validationStatus": "Validated"
@@ -221,7 +221,7 @@ export default function dataPhenylketonuria() {
         "source": "9254847[PMID]_[EXPERT]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "0.0",
         "geography": "Ireland",
         "validationStatus": "Validated"
@@ -231,7 +231,7 @@ export default function dataPhenylketonuria() {
         "source": "8825928[PMID]_[EXPERT]",
         "type": "Prevalence at birth",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "Finland",
         "validationStatus": "Validated"
@@ -241,7 +241,7 @@ export default function dataPhenylketonuria() {
         "source": "8825928[PMID]_[EXPERT]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "Finland",
         "validationStatus": "Validated"
@@ -251,7 +251,7 @@ export default function dataPhenylketonuria() {
         "source": "11581453[PMID]_21659675[PMID]_22766612[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "2.9",
         "geography": "United States",
         "validationStatus": "Not yet validated"
@@ -261,7 +261,7 @@ export default function dataPhenylketonuria() {
         "source": "11581453[PMID]_21659675[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "United States",
         "validationStatus": "Not yet validated"
@@ -271,7 +271,7 @@ export default function dataPhenylketonuria() {
         "source": "17701285[PMID]_ORPHANET",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "3.0",
         "geography": "Latin America",
         "validationStatus": "Not yet validated"
@@ -281,7 +281,7 @@ export default function dataPhenylketonuria() {
         "source": "17701285[PMID]_ORPHANET",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "Latin America",
         "validationStatus": "Not yet validated"
@@ -291,7 +291,7 @@ export default function dataPhenylketonuria() {
         "source": "19068582[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "4.9",
         "geography": "Brazil",
         "validationStatus": "Not yet validated"
@@ -301,7 +301,7 @@ export default function dataPhenylketonuria() {
         "source": "19068582[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "Brazil",
         "validationStatus": "Not yet validated"
@@ -311,7 +311,7 @@ export default function dataPhenylketonuria() {
         "source": "10617747[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "7.5",
         "geography": "Australia",
         "validationStatus": "Not yet validated"
@@ -321,7 +321,7 @@ export default function dataPhenylketonuria() {
         "source": "10617747[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "Australia",
         "validationStatus": "Not yet validated"
@@ -331,7 +331,7 @@ export default function dataPhenylketonuria() {
         "source": "21659675[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "11.9",
         "geography": "Iceland",
         "validationStatus": "Not yet validated"
@@ -341,7 +341,7 @@ export default function dataPhenylketonuria() {
         "source": "21659675[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "0.0",
         "geography": "Iceland",
         "validationStatus": "Not yet validated"
@@ -351,7 +351,7 @@ export default function dataPhenylketonuria() {
         "source": "6468444[PMID]_20971365[PMID]_ ORPHANET",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "1.16",
         "geography": "Japan",
         "validationStatus": "Not yet validated"
@@ -361,7 +361,7 @@ export default function dataPhenylketonuria() {
         "source": "6468444[PMID]_20971365[PMID]_ ORPHANET",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "Japan",
         "validationStatus": "Not yet validated"
@@ -371,7 +371,7 @@ export default function dataPhenylketonuria() {
         "source": "23430943[PMID]_19718537[PMID]_15906732[PMID]_ORPHANET",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "4.8",
         "geography": "China",
         "validationStatus": "Not yet validated"
@@ -381,7 +381,7 @@ export default function dataPhenylketonuria() {
         "source": "23430943[PMID]_19718537[PMID]_15906732[PMID]_ORPHANET",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "China",
         "validationStatus": "Not yet validated"
@@ -391,7 +391,7 @@ export default function dataPhenylketonuria() {
         "source": "15906730[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.46",
         "geography": "Thailand",
         "validationStatus": "Not yet validated"
@@ -401,7 +401,7 @@ export default function dataPhenylketonuria() {
         "source": "15906730[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "Thailand",
         "validationStatus": "Not yet validated"
@@ -411,7 +411,7 @@ export default function dataPhenylketonuria() {
         "source": "11432505[PMID]_[EXPERT]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "24.0",
         "geography": "Turkey",
         "validationStatus": "Validated"
@@ -421,7 +421,7 @@ export default function dataPhenylketonuria() {
         "source": "11432505[PMID]_[EXPERT]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-5 \/ 10 000",
+        "prevClass": "1-5 / 10 000",
         "valMoy": "0.0",
         "geography": "Turkey",
         "validationStatus": "Validated"
@@ -431,7 +431,7 @@ export default function dataPhenylketonuria() {
         "source": "15751925[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "5.0",
         "geography": "United Arab Emirates",
         "validationStatus": "Not yet validated"
@@ -441,7 +441,7 @@ export default function dataPhenylketonuria() {
         "source": "15751925[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "United Arab Emirates",
         "validationStatus": "Not yet validated"
@@ -525,7 +525,7 @@ export default function dataPhenylketonuria() {
             },
             {
               "id": "#13:5636",
-              "name": "Abnormality of metabolism\/homeostasis",
+              "name": "Abnormality of metabolism/homeostasis",
               "hasChildren": false
             }
           ]
@@ -623,7 +623,7 @@ export default function dataPhenylketonuria() {
       },
       {
         "id": "#16:4632",
-        "name": "Tetrahydrobiopterin-responsive hyperphenylalaninemia\/phenylketonuria",
+        "name": "Tetrahydrobiopterin-responsive hyperphenylalaninemia/phenylketonuria",
         "classification": [
           {
             "id": "#15:6",

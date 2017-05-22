@@ -1,7 +1,7 @@
 export default function dataAlkaptonuria() {
   return {
     "id": "#16:285",
-    "expertLink": "http:\/\/www.orpha.net\/consor\/cgi-bin\/OC_Exp.php?lng=en&Expert=56",
+    "expertLink": "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=en&Expert=56",
     "name": "Alkaptonuria",
     "disorderType": "Disease",
     "synonyms": [
@@ -32,7 +32,7 @@ export default function dataAlkaptonuria() {
         "id": "#3:1358",
         "order": 3,
         "name": "Epidemiology",
-        "text": "Worldwide birth prevalence is estimated at around 1\/111,000-1\/1,000,000."
+        "text": "Worldwide birth prevalence is estimated at around 1/111,000-1/1,000,000."
       },
       {
         "id": "#3:1359",
@@ -44,7 +44,7 @@ export default function dataAlkaptonuria() {
         "id": "#3:1360",
         "order": 5,
         "name": "Etiology",
-        "text": "Patients are homozygous or compound heterozygous for loss-of-function mutations (more than 120 different variants described worldwide) in the <i>HGD<\/i> gene (3q), encoding homogentisate 1,2-dioxygenase, an enzyme of the phenylalanine and tyrosine catabolic pathway. The inability to break down HGA leads to its accumulation. Tissue damage results from the deposition of a melanin-like pigment, which is a polymerised form of BQA, that has a high affinity for connective tissue. This pigment is able to trigger numerous redox reactions and induce free radical production, causing further damage to the connective tissue."
+        "text": "Patients are homozygous or compound heterozygous for loss-of-function mutations (more than 120 different variants described worldwide) in the <i>HGD</i> gene (3q), encoding homogentisate 1,2-dioxygenase, an enzyme of the phenylalanine and tyrosine catabolic pathway. The inability to break down HGA leads to its accumulation. Tissue damage results from the deposition of a melanin-like pigment, which is a polymerised form of BQA, that has a high affinity for connective tissue. This pigment is able to trigger numerous redox reactions and induce free radical production, causing further damage to the connective tissue."
       },
       {
         "id": "#3:1361",
@@ -161,7 +161,7 @@ export default function dataAlkaptonuria() {
         "source": "[EXPERT]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "Worldwide",
         "validationStatus": "Validated"
@@ -171,7 +171,7 @@ export default function dataAlkaptonuria() {
         "source": "European Medicines Agency 2003[INST]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "Europe",
         "validationStatus": "Validated"
@@ -181,7 +181,7 @@ export default function dataAlkaptonuria() {
         "source": "21927854[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.15",
         "geography": "France",
         "validationStatus": "Validated"
@@ -191,7 +191,7 @@ export default function dataAlkaptonuria() {
         "source": "21927854[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "France",
         "validationStatus": "Not yet validated"
@@ -201,7 +201,7 @@ export default function dataAlkaptonuria() {
         "source": "20301627[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.25",
         "geography": "United States",
         "validationStatus": "Not yet validated"
@@ -211,7 +211,7 @@ export default function dataAlkaptonuria() {
         "source": "20301627[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 1 000 000",
+        "prevClass": "1-9 / 1 000 000",
         "valMoy": "0.0",
         "geography": "United States",
         "validationStatus": "Not yet validated"
@@ -221,7 +221,7 @@ export default function dataAlkaptonuria() {
         "source": "12051967[PMID]",
         "type": "Prevalence at birth",
         "qualification": "Value and class",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "5.3",
         "geography": "Slovakia",
         "validationStatus": "Validated"
@@ -231,7 +231,7 @@ export default function dataAlkaptonuria() {
         "source": "12051967[PMID]",
         "type": "Point prevalence",
         "qualification": "Class only",
-        "prevClass": "1-9 \/ 100 000",
+        "prevClass": "1-9 / 100 000",
         "valMoy": "0.0",
         "geography": "Slovakia",
         "validationStatus": "Validated"
@@ -442,7 +442,7 @@ export default function dataAlkaptonuria() {
             },
             {
               "id": "#13:5636",
-              "name": "Abnormality of metabolism\/homeostasis",
+              "name": "Abnormality of metabolism/homeostasis",
               "hasChildren": false
             }
           ]
@@ -596,7 +596,7 @@ export default function dataAlkaptonuria() {
             },
             {
               "id": "#13:5636",
-              "name": "Abnormality of metabolism\/homeostasis",
+              "name": "Abnormality of metabolism/homeostasis",
               "hasChildren": false
             }
           ]

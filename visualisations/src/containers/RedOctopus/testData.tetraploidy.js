@@ -1,7 +1,7 @@
 export default function dataTetraploidy() {
   return {
     "id": "#16:1089",
-    "expertLink": "http:\/\/www.orpha.net\/consor\/cgi-bin\/OC_Exp.php?lng=en&Expert=3305",
+    "expertLink": "http://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=en&Expert=3305",
     "name": "Tetraploidy",
     "disorderType": "Malformation syndrome",
     "flags": [
@@ -282,7 +282,7 @@ export default function dataTetraploidy() {
           "classification": [
             {
               "id": "#13:5636",
-              "name": "Abnormality of metabolism\/homeostasis",
+              "name": "Abnormality of metabolism/homeostasis",
               "hasChildren": false
             }
           ]
@@ -336,7 +336,7 @@ export default function dataTetraploidy() {
         "phenotype": {
           "id": "#13:10763",
           "hpoId": "HP:0006703",
-          "name": "Aplasia\/Hypoplasia of the lungs",
+          "name": "Aplasia/Hypoplasia of the lungs",
           "classification": [
             {
               "id": "#13:2492",
@@ -352,7 +352,7 @@ export default function dataTetraploidy() {
         "phenotype": {
           "id": "#13:8495",
           "hpoId": "HP:0008056",
-          "name": "Aplasia\/Hypoplasia affecting the eye",
+          "name": "Aplasia/Hypoplasia affecting the eye",
           "classification": [
             {
               "id": "#13:10529",
@@ -368,7 +368,7 @@ export default function dataTetraploidy() {
         "phenotype": {
           "id": "#13:970",
           "hpoId": "HP:0008678",
-          "name": "Renal hypoplasia\/aplasia",
+          "name": "Renal hypoplasia/aplasia",
           "classification": [
             {
               "id": "#13:2166",
@@ -384,7 +384,7 @@ export default function dataTetraploidy() {
         "phenotype": {
           "id": "#13:3526",
           "hpoId": "HP:0010515",
-          "name": "Aplasia\/Hypoplasia of the thymus",
+          "name": "Aplasia/Hypoplasia of the thymus",
           "classification": [
             {
               "id": "#13:2025",
