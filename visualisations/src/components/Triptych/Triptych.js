@@ -27,7 +27,7 @@ const ProgressBarFlipped = styled(ProgressBar)`
 `;
 
 const Left = styled.td`
-  width: 300px;
+  width: 240px;
   text-align: right;
   line-height: 1;
   font-size: 11px;
@@ -39,9 +39,12 @@ const Middle = styled.td`
 `;
 
 const Right = styled.td`
-  width: 300px;
+  width: 240px;
   line-height: 1;
   font-size: 11px;
+  .progress-bar {
+    background: #e80;
+  }
 `;
 
 /**
@@ -73,30 +76,30 @@ export default function Triptych({data}) {
           return(
             <tr key={$index}>
               <Left>
-                {item.phenotype1.label}
+                {item[Object.keys(data[0])[0]].label}
                 <ProgressBarFlipped 
-                  now={parseFloat(item.phenotype1.informationContent)} 
+                  now={parseFloat(item[Object.keys(data[0])[0]].informationContent)} 
                   max={16}
-                  label={item.phenotype1.informationContent}
+                  label={item[Object.keys(data[0])[0]].informationContent}
                 />
               </Left>
               
               <Middle>
                 <Radial
                   value={item.similarity}
-                  thickness="2"
+                  thickness="1"
                   scale="9"
-                  valueBarColor="#e80"
+                  valueBarColor="#070"
                   style={{ margin: '0px 20px 15px 20px' }}
                 />
               </Middle>
               
               <Right>
-                {item.phenotype2.label}
+                {item[Object.keys(data[0])[1]].label}
                 <ProgressBar 
-                  now={parseFloat(item.phenotype2.informationContent)} 
+                  now={parseFloat(item[Object.keys(data[0])[1]].informationContent)} 
                   max={16}
-                  label={item.phenotype2.informationContent}
+                  label={item[Object.keys(data[0])[1]].informationContent}
                 />
               </Right>
             </tr>
