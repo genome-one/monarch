@@ -27,6 +27,7 @@ export function generateTriptychQueryString(classedPhenoA, classedPhenoB, select
     newArr.push({
       [profileNameA]: { label: match.a.label, informationContent: parseFloat(match.a.IC).toFixed(2) },
       [profileNameB]: { label: match.b.label, informationContent: parseFloat(match.b.IC).toFixed(2) },
+      lcs: { label: match.lcs.label, informationContent: parseFloat(match.lcs.IC).toFixed(2) },
       similarity: calSimScore(match.a.IC, match.b.IC, match.lcs.IC, maxMaxIC)
     });
   })

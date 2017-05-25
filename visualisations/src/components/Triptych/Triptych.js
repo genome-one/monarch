@@ -1,6 +1,8 @@
 import React from 'react';
 import { 
-  ProgressBar
+  ProgressBar,
+  OverlayTrigger,
+  Popover
 } from 'react-bootstrap';
 import styled from 'styled-components'
 import Radial from './../Radial/Radial'
@@ -47,6 +49,13 @@ const Right = styled.td`
   }
 `;
 
+const Pop = styled(Popover)`
+  font-size: 11px !important;
+  .popover-title {
+    font-size: 11px !important;
+  }
+`;
+
 /**
  * Triptych visualisation
  */
@@ -85,13 +94,26 @@ export default function Triptych({data}) {
               </Left>
               
               <Middle>
-                <Radial
-                  value={item.similarity}
-                  thickness="1"
-                  scale="9"
-                  valueBarColor="#070"
-                  style={{ margin: '0px 20px 15px 20px' }}
-                />
+                <OverlayTrigger 
+                  trigger={['hover', 'focus']}
+                  placement="top"
+                  overlay={
+                    item.lcs ? (
+                    <Pop key={$index} title="Least Common Subsuming" id="triptych-pop-over">
+                      {`${item.lcs.label} (${item.lcs.informationContent})`}
+                    </Pop>) : <Popover key={$index} id="triptych-pop-over" style={{ display: 'none' }} />
+                  }
+                >
+                <div style={{ cursor: 'pointer' }}>
+                    <Radial
+                      value={item.similarity}
+                      thickness="1"
+                      scale="9"
+                      valueBarColor="#070"
+                      style={{ margin: '0px 20px 15px 20px' }}
+                    />
+                  </div>
+                </OverlayTrigger>
               </Middle>
               
               <Right>
