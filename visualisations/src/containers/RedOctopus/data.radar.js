@@ -21,3 +21,17 @@ export function countForRadar(axis, data) {
  
   return arr;
 }
+
+export function sortRadarAxisByTableData(currentRadarData, sortedTableData) {
+  var newRadarData = [[],[]];
+  sortedTableData.forEach((category) => {
+    currentRadarData[0].forEach((item, index) => {
+      if(item.axis === category.label) {
+        newRadarData[0].push(currentRadarData[0][index]);
+        newRadarData[1].push(currentRadarData[1][index]);
+      }
+    })
+  });
+  
+  return newRadarData;
+}
