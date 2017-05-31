@@ -22,7 +22,3 @@ export function getComparedAttributeSets(qString) {
     .then((response) => response.json())
     .then((json) => json);
 }
-
-export function getDiseaseInfo(id) {
-  // TODO
-}

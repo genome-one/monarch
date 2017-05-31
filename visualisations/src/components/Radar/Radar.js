@@ -5,8 +5,9 @@ import * as d3 from "d3";
  * Radar chart in d3
  */
 export default function Radar({data, options}) {
-  setTimeout(() => radarChart("#chartRadar", data, options), 500)
-  return <div id="chartRadar" />
+  var rand = Math.random().toString(36).substr(2, 12);
+  setTimeout(() => radarChart(`#chartRadar-${rand}`, data, options), 500)
+  return <div id={`chartRadar-${rand}`} />
 }
 
 // Taken from http://bl.ocks.org/nbremer/21746a9668ffdf6d8242, code modified to
@@ -223,7 +224,9 @@ function radarChart(id, data, options) {
       .style("background", "#fff")
       .style("padding", "4px 8px 4px 8px")
       .style("border", "1px solid #000")
-      .style("border-radius","4px");
+      .style("border-radius","4px")
+      .style("left", "-5000px")		
+      .style("top", "-5000px");	;
   
   //Wrapper for the invisible circles on top
   var blobCircleWrapper = g.selectAll(".radarCircleWrapper")
@@ -244,15 +247,15 @@ function radarChart(id, data, options) {
       .style("cursor", "pointer")
       .on("mouseover", function(d,i) {
         tooltip.transition()		
-          .duration(200)		
+          .duration(150)		
           .style("opacity", .9);		
-        tooltip.html(Format(d.value))	
-          .style("left", (d3.event.pageX) + "px")		
+        tooltip.html(d.list ? d.list.join('<br />') : d.value)	
+          .style("left", (d3.event.pageX + 14) + "px")		
           .style("top", (d3.event.pageY - 28) + "px");	
       })
       .on("mouseout", function(){   
         tooltip.transition()		
-          .duration(500)		
+          .duration(150)		
           .style("opacity", 0);	
       });
 
