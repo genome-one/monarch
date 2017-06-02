@@ -6,14 +6,13 @@ import {
   Glyphicon
 } from 'react-bootstrap';
 import styled from 'styled-components';
-//import Select from 'react-select';
-import { /*getDiseaseOptions,*/ getComparedAttributeSets } from './apis';
+import { getComparedAttributeSets } from './apis';
 import { 
   getPhenotypeClassifications, 
   initClassedPhenotype, 
   populateClassedPhenotype 
 } from './data.phenoClass';
-import { initRadarAxisData, countForRadar } from './data.radar';
+import { initRadarAxisData, countForRadar, sortRadarAxisByTableData } from './data.radar';
 import { initTableData, populateTableData } from './data.table';
 import { generateTriptychQueryString, processDataForTriptych } from './data.triptych';
 import dataAchondroplasia from './testData.achondroplasia';
@@ -49,7 +48,7 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
-  float: right;
+  float: left;
   padding: 24px 64px 24px 32px;
 `;
 
@@ -59,23 +58,15 @@ const SpinningLogo = styled(Glyphicon)`
   animation: spin 1000ms infinite linear;
 `;
 
-/*const Search = styled(Select.Async)`
-  width: 200px;
-  font-size: 13px;
-`;*/
-
 export default class RedOctopus extends Component {
   constructor(props) {
     super(props);
-    //this.selectDiseaseA = this.selectDiseaseA.bind(this);
-    //this.selectDiseaseB = this.selectDiseaseB.bind(this);
     this.updateVisualisation = this.updateVisualisation.bind(this);
     this.updateTriptych = this.updateTriptych.bind(this);
+    this.sortTableCallBack = this.sortTableCallBack.bind(this);
     this.state = {
       diseaseA: {},
       diseaseB: {},
-      //diseaseAData: dataAchondroplasia(),
-      //diseaseBData: dataPseudoAchondroplasia(),
       classedPhenotypeA: {},
       classedPhenotypeB: {},
       table: [],
@@ -87,20 +78,6 @@ export default class RedOctopus extends Component {
   componentWillMount() {
     this.updateVisualisation(dataAchondroplasia(), dataPseudoAchondroplasia());
   }
-  
-  componentDidUpdate(nextProps, prevProps) {
-    if(
-      this.state.diseaseA.value && 
-      this.state.diseaseB.value && 
-      (this.state.diseaseA.value !== prevProps.diseaseA.value || this.state.diseaseB.value !== prevProps.diseaseB.value)
-    ) {
-      // TODO
-    }
-  }
-  /*
-  selectDiseaseA(value) { this.setState({diseaseA: value}) }
-  selectDiseaseB(value) { this.setState({diseaseB: value}) }
-  */
   
   updateVisualisation(dataA, dataB) {
     var classifications = getPhenotypeClassifications([dataA, dataB]);
@@ -134,27 +111,17 @@ export default class RedOctopus extends Component {
       });
   }
   
+  sortTableCallBack(newTableData) {
+    this.setState({
+      radar: sortRadarAxisByTableData(this.state.radar, newTableData)
+    })
+  }
+  
   render() {
     return (
       <div>
         <Header>
           <b>Monarch Disease Comparison</b>
-          {/*}
-          <Search
-            name="diseaseA"
-            value={this.state.diseaseA}
-            isLoading={true}
-            loadOptions={getDiseaseOptions}
-            onChange={this.selectDiseaseA}
-          />
-          <Search
-            name="diseaseB"
-            value={this.state.diseaseB}
-            isLoading={true}
-            loadOptions={getDiseaseOptions}
-            onChange={this.selectDiseaseB}
-          />
-          {*/}
           
           <ButtonToolbar>
             <DropdownButton bsSize="small" title="Choose Dataset" id="diseasePairSelect">
@@ -179,18 +146,20 @@ export default class RedOctopus extends Component {
             <Radar 
               data={this.state.radar} 
               options={{
-                w: 500,
-                h: 500,
+                w: 360,
+                h: 360,
                 wrapWidth: 100,
-                labelFactor: 1.2
+                labelFactor: 1.25,
+                dotRadius: 2,
+                strokeWidth: 1
               }}
             />
           }
+                    
+          <TableDiseaseMatch data={this.state.table} sortCallBack={this.sortTableCallBack} />
         </Left>
         
         <Right>
-          <TableDiseaseMatch data={this.state.table} />
-          <br /><br />
           {this.state.triptych.length > 0 ?
             <Triptych data={this.state.triptych}/> :
             <span>
