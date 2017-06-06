@@ -84,7 +84,7 @@ export default function Triptych({data}) {
         data.map((item, $index) => {
           return(
             <tr key={$index}>
-              <Left>
+              <Left style={{ color: (parseFloat(item[Object.keys(data[0])[0]].informationContent) > 0) ? '#000' : '#999' }}>
                 {item[Object.keys(data[0])[0]].label}
                 <ProgressBarFlipped 
                   now={parseFloat(item[Object.keys(data[0])[0]].informationContent)} 
@@ -116,7 +116,7 @@ export default function Triptych({data}) {
                 </OverlayTrigger>
               </Middle>
               
-              <Right>
+              <Right style={{ color: (parseFloat(item[Object.keys(data[0])[1]].informationContent) > 0) ? '#000' : '#999' }}>
                 {item[Object.keys(data[0])[1]].label}
                 <ProgressBar 
                   now={parseFloat(item[Object.keys(data[0])[1]].informationContent)} 

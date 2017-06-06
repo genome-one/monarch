@@ -4,8 +4,9 @@ import styled from 'styled-components'
 
 const Base = styled.table`
   font-size: 11px;
+  border-collapse: separate !important;
 
-  thead tr {
+  thead td {
     font-weight: bold;
     border-bottom: 3px solid #000 !important;
   }
@@ -17,7 +18,7 @@ const Base = styled.table`
   }
 
   tbody td {
-    border: 2px solid #fff;
+    border: 1px solid #fff;
   }
 
   tbody > tr > td:first-child {
@@ -27,9 +28,26 @@ const Base = styled.table`
   tbody > tr > td:nth-child(4) {
     border-right: none;
   }
+`;
 
-  tbody tr:nth-child(odd) {
-    background: #eee;
+const TrSelectable = styled.tr`
+  cursor: pointer;
+  
+  td {
+    border-top: 1px solid ${(props) => props.rowSelect ? '#f00' : '#fff' } !important;
+    border-bottom: 1px solid ${(props) => props.rowSelect ? '#f00' : '#fff' }!important;
+  }
+
+  td:first-child {
+    border-left: 1px solid ${(props) => props.rowSelect ? '#f00' : '#fff' } !important;
+  }
+
+  td:last-child {
+    border-right: 1px solid ${(props) => props.rowSelect ? '#f00' : '#fff' } !important;
+  }
+  
+  td div {
+    border-left: 5px solid ${(props) => props.rowSelect ? '#e00' : 'transparent' };
   }
 `;
 
@@ -69,6 +87,19 @@ const TdDisorderB = styled.td`
     1);
 `;
 
+
+const Selector = styled.div`
+  display: inline-block;
+  width: 0; 
+  height: 0; 
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid transparent;
+  position: absolute;
+  margin-top: 2px;
+  margin-left: -8px;
+`;
+
 const SmallBox = styled.div`
   width: 9px;
   height: 9px;
@@ -85,8 +116,10 @@ export default class TableDiseaseMatch extends Component {
   constructor(props) {
     super(props);
     this.sort = this.sort.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
-      list: props.data.list
+      list: props.data.list,
+      rowSelect: 'overall'
     }
   }
   
@@ -114,6 +147,12 @@ export default class TableDiseaseMatch extends Component {
     if(this.props.sortCallBack) this.props.sortCallBack(newList);
   }
   
+  handleClick(event) {
+    var category = event.currentTarget.getAttribute('data-category');
+    this.setState({ rowSelect: category  })
+    this.props.onRowClick(category)
+  }
+  
   render() {
     return (
       <Base>
@@ -123,32 +162,45 @@ export default class TableDiseaseMatch extends Component {
               Phenotype Category <Glyphicon glyph="sort" />
             </TdSortable>
             <TdSortable onClick={this.sort} data-col="diseaseA">
-              <SmallBox color="blue" />{this.props.data.diseaseAName} <Glyphicon glyph="sort" />
+              <SmallBox color="blue" />
+              {(this.props.data.diseaseAName.length < 20) ? this.props.data.diseaseAName : this.props.data.diseaseAName.substring(0, 17) + '...' }
+              <Glyphicon glyph="sort" />
             </TdSortable>
             <TdSortable onClick={this.sort} data-col="matchScore">
               Match Score <Glyphicon glyph="sort" />
             </TdSortable>
             <TdSortable onClick={this.sort} data-col="diseaseB">
-              <SmallBox color="orange" />{this.props.data.diseaseBName} <Glyphicon glyph="sort" />
+              <SmallBox color="orange" />
+              {(this.props.data.diseaseBName.length < 20) ? this.props.data.diseaseBName : this.props.data.diseaseBName.substring(0, 17) + '...' }
+              <Glyphicon glyph="sort" />
             </TdSortable>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <TdOverallNorm>Overall</TdOverallNorm> 
+          <TrSelectable 
+            data-category="Overall"
+            rowSelect={(() => (this.state.rowSelect === "Overall"))()}
+            onClick={this.handleClick}
+          >
+            <TdOverallNorm><Selector /> Overall</TdOverallNorm> 
             <TdOverallDisorder style={{ textAlign: 'right' }}>{this.props.data.overall.diseaseA}</TdOverallDisorder>
             <TdOverallNorm style={{ textAlign: 'center' }}>{this.props.data.overall.matchScore}</TdOverallNorm>
             <TdOverallDisorder>{this.props.data.overall.diseaseB}</TdOverallDisorder>
-          </tr>
+          </TrSelectable>
           {
             this.state.list.map((item, $index) => {
               return(
-                <tr key={$index}>
-                  <td>{item.label}</td> 
+                <TrSelectable 
+                  key={$index}
+                  data-category={item.label}
+                  rowSelect={(() => (this.state.rowSelect === item.label))()}
+                  onClick={this.handleClick}
+                >
+                  <td><Selector /> {item.label}</td> 
                   <TdDisorderA value={item.diseaseA}>{item.diseaseA}</TdDisorderA>
                   <TdMatch>{item.matchScore}</TdMatch>
                   <TdDisorderB value={item.diseaseB}>{item.diseaseB}</TdDisorderB>
-                </tr>
+                </TrSelectable>
               )
             })
           }
