@@ -1,14 +1,15 @@
 import { getComparedAttributeSets } from './apis';
 
-export function clustering(dataA, dataB) {
+export function clustering(dataA, dataB, filterByCategory) {
   let clusters = [];
   
-  const isBone = (phenotype) => {
-    return phenotype.classification.map(classification => classification.id).indexOf('#13:7130') >= 0;
+  const applyFilter = (phenotype) => {
+    if(filterByCategory) return phenotype.classification.map(classification => classification.name).indexOf(filterByCategory) >= 0;
+    return true;
   }
   
-  const a = dataA.phenotypes.filter(phenotype => isBone(phenotype.phenotype)).map((phenotype) => phenotype.phenotype.hpoId );
-  const b = dataB.phenotypes.filter(phenotype =>  isBone(phenotype.phenotype)).map((phenotype) => phenotype.phenotype.hpoId );
+  const a = dataA.phenotypes.filter(phenotype => applyFilter(phenotype.phenotype)).map((phenotype) => phenotype.phenotype.hpoId );
+  const b = dataB.phenotypes.filter(phenotype => applyFilter(phenotype.phenotype)).map((phenotype) => phenotype.phenotype.hpoId );
   
   const set = a.concat(b).reduce(function(acc, id) {
     return acc.indexOf(id) >= 0 ? acc : acc.concat([id])

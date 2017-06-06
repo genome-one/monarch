@@ -102,6 +102,8 @@ export default class RedOctopus extends Component {
     this.handleClustering(dataA, dataB);
     this.updateTriptych(classPhenotypeA, classPhenotypeB, dataA.name, dataB.name);
     this.setState({
+      diseaseA: dataA,
+      diseaseB: dataB,
       classedPhenotypeA: classPhenotypeA,
       classedPhenotypeB: classPhenotypeB,
       radar: [
@@ -137,10 +139,10 @@ export default class RedOctopus extends Component {
       });
   }
   
-  handleClustering(dataA, dataB) {
+  handleClustering(dataA, dataB, categoryFilter) {
     this.setState({ clusteringRadar: [] });
     
-    clustering(dataA, dataB).then((cData) => {
+    clustering(dataA, dataB, categoryFilter).then((cData) => {
       this.setState({
         clusteringRadar: groupSimilar(generateAxisData(cData, dataA, dataB))
       });
@@ -156,7 +158,7 @@ export default class RedOctopus extends Component {
   handleTableRowClick(data) {
     var profileNameA = this.state.table.diseaseAName,
         profileNameB = this.state.table.diseaseBName,
-        leftData = [], rightData = [];
+        leftData = [], rightData = [], classFilter;
     
     this.setState({ tableSelect: data });
     
@@ -166,9 +168,11 @@ export default class RedOctopus extends Component {
     } else {
       leftData = { [data]: this.state.classedPhenotypeA[data] };
       rightData = { [data]: this.state.classedPhenotypeB[data] };
+      classFilter = data;
     }
     
     this.updateTriptych(leftData, rightData, profileNameA, profileNameB);
+    this.handleClustering(this.state.diseaseA, this.state.diseaseB, classFilter);
   }
   
   render() {
