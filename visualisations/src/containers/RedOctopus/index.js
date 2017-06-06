@@ -13,9 +13,17 @@ import {
   populateClassedPhenotype 
 } from './data.phenoClass';
 import { clustering, generateAxisData, groupSimilar } from './data.clustering';
-import { initRadarAxisData, countForRadar, sortRadarAxisByTableData } from './data.radar';
+import { 
+  initRadarAxisData,
+  countForRadar,
+  sortRadarAxisByTableData
+} from './data.radar';
 import { initTableData, populateTableData } from './data.table';
-import { generateTriptychQueryString, processDataForTriptych } from './data.triptych';
+import { 
+  initTriptychData,
+  generateTriptychQueryString,
+  processDataForTriptych
+} from './data.triptych';
 import dataAchondroplasia from './testData.achondroplasia';
 import dataPseudoAchondroplasia from './testData.pseudoachondroplasia';
 import dataAlkaptonuria from './testData.alkaptonuria';
@@ -45,7 +53,7 @@ const Header = styled.div`
 
 const Left = styled.div`
   float: left;
-  padding-left: 24px;
+  padding: 24px 0 0 24px;
 `;
 
 const Right = styled.div`
@@ -65,6 +73,7 @@ export default class RedOctopus extends Component {
     this.updateVisualisation = this.updateVisualisation.bind(this);
     this.updateTriptych = this.updateTriptych.bind(this);
     this.sortTableCallBack = this.sortTableCallBack.bind(this);
+    this.handleTableRowClick = this.handleTableRowClick.bind(this);
     this.state = {
       diseaseA: {},
       diseaseB: {},
@@ -100,16 +109,30 @@ export default class RedOctopus extends Component {
         countForRadar(radarAxis, dataB)
       ],
       table: tableData,
+      tableSelect: 'Overall',
       triptych: []
     })
   }
   
   updateTriptych(classPhenotypeA, classPhenotypeB, profileNameA, profileNameB) {
-    var triptychQString = generateTriptychQueryString(classPhenotypeA, classPhenotypeB);
+    this.setState({ triptych: [] });
+    
+    var preData = initTriptychData(classPhenotypeA, classPhenotypeB);
+    var triptychQString = generateTriptychQueryString(preData.selectedA, preData.selectedB);
     getComparedAttributeSets(triptychQString)
       .then((data) => {
+        var allPhenotypeA = [], allPhenotypeB = [];
+      
+        Object.keys(classPhenotypeA).forEach(function(key,index) {
+          allPhenotypeA.push.apply(allPhenotypeA, classPhenotypeA[key]);
+        });
+      
+        Object.keys(classPhenotypeB).forEach(function(key,index) {
+          allPhenotypeB.push.apply(allPhenotypeB, classPhenotypeB[key]);
+        });
+      
         this.setState({
-          triptych: processDataForTriptych(data, profileNameA, profileNameB)
+          triptych: processDataForTriptych(data, profileNameA, profileNameB, allPhenotypeA, allPhenotypeB)
         });
       });
   }
@@ -128,6 +151,24 @@ export default class RedOctopus extends Component {
     this.setState({
       radar: sortRadarAxisByTableData(this.state.radar, newTableData)
     })
+  }
+  
+  handleTableRowClick(data) {
+    var profileNameA = this.state.table.diseaseAName,
+        profileNameB = this.state.table.diseaseBName,
+        leftData = [], rightData = [];
+    
+    this.setState({ tableSelect: data });
+    
+    if(data === 'Overall') {
+      leftData = this.state.classedPhenotypeA;
+      rightData = this.state.classedPhenotypeB;
+    } else {
+      leftData = { [data]: this.state.classedPhenotypeA[data] };
+      rightData = { [data]: this.state.classedPhenotypeB[data] };
+    }
+    
+    this.updateTriptych(leftData, rightData, profileNameA, profileNameB);
   }
   
   render() {
@@ -155,6 +196,7 @@ export default class RedOctopus extends Component {
         </Header>
         
         <Left>
+          <h4>{this.state.table.diseaseAName} / {this.state.table.diseaseBName}</h4>
           {this.state.radar.length > 0 &&
             <Radar 
               data={this.state.radar} 
@@ -169,17 +211,15 @@ export default class RedOctopus extends Component {
             />
           }
                     
-          <TableDiseaseMatch data={this.state.table} sortCallBack={this.sortTableCallBack} />
+          <TableDiseaseMatch 
+            data={this.state.table}
+            sortCallBack={this.sortTableCallBack}
+            onRowClick={this.handleTableRowClick}
+          />
         </Left>
         
         <Right>
-          {this.state.triptych.length > 0 ?
-            <Triptych data={this.state.triptych}/> :
-            <span>
-              <SpinningLogo glyph="refresh" /> Loading Triptych Data...
-            </span>
-          }
-          <br />
+          <h4>{ this.state.tableSelect }</h4>
           {this.state.clusteringRadar.length > 0 ?
             <Radar 
               data={this.state.clusteringRadar} 
@@ -192,9 +232,16 @@ export default class RedOctopus extends Component {
                 strokeWidth: 1
               }}
             /> :
-            <span>
+            <div>
               <SpinningLogo glyph="refresh" /> Clustering...
-            </span>
+            </div>
+          }
+
+          {this.state.triptych.length > 0 ?
+            <Triptych data={this.state.triptych}/> :
+            <div>
+              <SpinningLogo glyph="refresh" /> Loading Triptych Data...
+            </div>
           }
         </Right> 
       </div>

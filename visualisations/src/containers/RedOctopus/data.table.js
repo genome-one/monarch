@@ -13,7 +13,7 @@ export function initTableData(classifications) {
 }
 
 export function populateTableData(dataObj, prop, data) {
-  dataObj[prop + 'Name'] = (data.name.length < 20) ? data.name : data.name.substring(0, 17) + '...' ;
+  dataObj[prop + 'Name'] = data.name;
                                                         
   data.phenotypes.forEach((pheno) => {
     pheno.phenotype.classification.forEach((classification) => {

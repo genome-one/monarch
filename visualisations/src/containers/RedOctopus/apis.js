@@ -20,5 +20,6 @@ export function getDiseaseOptions(value) {
 export function getComparedAttributeSets(qString) {
   return fetch(`https://crossorigin.me/https://beta.monarchinitiative.org/owlsim/compareAttributeSets${qString}`)
     .then((response) => response.json())
-    .then((json) => json);
+    .then((json) => json)
+    .catch(e => console.log(e));
 }

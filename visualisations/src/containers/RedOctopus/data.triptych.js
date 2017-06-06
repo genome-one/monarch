@@ -1,4 +1,4 @@
-export function generateTriptychQueryString(classedPhenoA, classedPhenoB, select) {
+export function initTriptychData(classedPhenoA, classedPhenoB, select) {
   var selectedA = [], selectedB = []
   if(select) {
     selectedA = classedPhenoA[select];
@@ -12,7 +12,11 @@ export function generateTriptychQueryString(classedPhenoA, classedPhenoB, select
       selectedB.push.apply(selectedB, classedPhenoB[key]);
     });
   }
+  
+  return { selectedA: selectedA, selectedB: selectedB };
+}
 
+export function generateTriptychQueryString(selectedA, selectedB) {
   var hpoA = selectedA.map((item) => { return item.hpoId });
   var hpoB = selectedB.map((item) => { return item.hpoId });
   var qString = '?a=' + hpoA.join('&a=') + '&b=' + hpoB.join('&b=');
@@ -20,7 +24,7 @@ export function generateTriptychQueryString(classedPhenoA, classedPhenoB, select
   return qString;
 }
 
- export function processDataForTriptych(data, profileNameA, profileNameB) {
+ export function processDataForTriptych(data, profileNameA, profileNameB, allDataA, allDataB) {
   var newArr = [],
       maxMaxIC = data.results[0].system_stats.maxMaxIC;
   data.results[0].matches.forEach((match) => {
@@ -31,12 +35,50 @@ export function generateTriptychQueryString(classedPhenoA, classedPhenoB, select
       similarity: calSimScore(match.a.IC, match.b.IC, match.lcs.IC, maxMaxIC)
     });
   })
-
+  
   newArr.sort((a, b) => {
     return b.similarity - a.similarity;
-  })
+  });
 
-  return newArr;
+  return includeUnmatch(newArr, profileNameA, profileNameB, allDataA, allDataB);
+}
+ 
+export function includeUnmatch(data, profileNameA, profileNameB, allDataA, allDataB) {
+  var newData = data;
+  
+  allDataA.forEach((itemA) => {
+    var have = false;
+    
+    newData.forEach((item) => {
+      if(item[profileNameA].label === itemA.name) have = true;
+    });
+    
+    if(!have) {
+      newData.push({
+        [profileNameA]: { label: itemA.name, informationContent: 0 },
+        [profileNameB]: { label: '', informationContent: 0 },
+        similarity: 0
+      })
+    }
+  });
+  
+  allDataB.forEach((itemB) => {
+    var have = false;
+    
+    newData.forEach((item) => {
+      if(item[profileNameB].label === itemB.name) have = true;
+    });
+    
+    if(!have) {
+      newData.push({
+        [profileNameA]: { label: '', informationContent: 0 },
+        [profileNameB]: { label: itemB.name, informationContent: 0 },
+        similarity: 0
+      })
+    }
+  });
+  
+  return newData;
 }
   
 export function calSimScore(aIC, bIC, lcsIC, maxMaxIC ) {
