@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { 
+import {
   ButtonToolbar,
   DropdownButton,
   MenuItem,
@@ -7,19 +7,19 @@ import {
 } from 'react-bootstrap';
 import styled from 'styled-components';
 import { getComparedAttributeSets } from './apis';
-import { 
-  getPhenotypeClassifications, 
-  initClassedPhenotype, 
-  populateClassedPhenotype 
+import {
+  getPhenotypeClassifications,
+  initClassedPhenotype,
+  populateClassedPhenotype
 } from './data.phenoClass';
 import { clustering, generateAxisData, groupSimilar } from './data.clustering';
-import { 
+import {
   initRadarAxisData,
   countForRadar,
   sortRadarAxisByTableData
 } from './data.radar';
 import { initTableData, populateTableData } from './data.table';
-import { 
+import {
   initTriptychData,
   generateTriptychQueryString,
   processDataForTriptych
@@ -39,7 +39,7 @@ const Header = styled.div`
   height: 52px;
   padding: 8px 24px 8px 24px;
   color: #eee;
-  
+
   b {
     font-size: 16px;
   }
@@ -52,13 +52,25 @@ const Header = styled.div`
 `;
 
 const Left = styled.div`
-  float: left;
+  position: fixed;
+  width: 50%;
+  top: 60px;
+  left: 0;
+  overflow: auto;
   padding: 24px 0 0 24px;
+  padding-bottom: 100px;
+  height: 100%;
 `;
 
 const Right = styled.div`
-  float: left;
+  position: fixed;
+  width: 50%;
+  top: 60px;
+  right: 0;
+  overflow: auto;
   padding: 24px 64px 24px 32px;
+  padding-bottom: 100px;
+  height: 100%;
 `;
 
 const SpinningLogo = styled(Glyphicon)`
@@ -85,11 +97,11 @@ export default class RedOctopus extends Component {
       clusteringRadar: []
     }
   }
-  
+
   componentWillMount() {
     this.updateVisualisation(dataAchondroplasia(), dataPseudoAchondroplasia());
   }
-  
+
   updateVisualisation(dataA, dataB) {
     var classifications = getPhenotypeClassifications([dataA, dataB]);
     var classPhenoUnpopulated = initClassedPhenotype(classifications);
@@ -99,7 +111,7 @@ export default class RedOctopus extends Component {
     var tableData = initTableData(classifications);
     populateTableData(tableData, 'diseaseA', dataA);
     populateTableData(tableData, 'diseaseB', dataB);
-    this.handleClustering(dataA, dataB);
+    // this.handleClustering(dataA, dataB);
     this.updateTriptych(classPhenotypeA, classPhenotypeB, dataA.name, dataB.name);
     this.setState({
       diseaseA: dataA,
@@ -110,58 +122,59 @@ export default class RedOctopus extends Component {
         countForRadar(radarAxis, dataA),
         countForRadar(radarAxis, dataB)
       ],
+      clusteringRadar: [],
       table: tableData,
       tableSelect: 'Overall',
       triptych: []
     })
   }
-  
+
   updateTriptych(classPhenotypeA, classPhenotypeB, profileNameA, profileNameB) {
     this.setState({ triptych: [] });
-    
+
     var preData = initTriptychData(classPhenotypeA, classPhenotypeB);
     var triptychQString = generateTriptychQueryString(preData.selectedA, preData.selectedB);
     getComparedAttributeSets(triptychQString)
       .then((data) => {
         var allPhenotypeA = [], allPhenotypeB = [];
-      
+
         Object.keys(classPhenotypeA).forEach(function(key,index) {
           allPhenotypeA.push.apply(allPhenotypeA, classPhenotypeA[key]);
         });
-      
+
         Object.keys(classPhenotypeB).forEach(function(key,index) {
           allPhenotypeB.push.apply(allPhenotypeB, classPhenotypeB[key]);
         });
-      
+
         this.setState({
           triptych: processDataForTriptych(data, profileNameA, profileNameB, allPhenotypeA, allPhenotypeB)
         });
       });
   }
-  
+
   handleClustering(dataA, dataB, categoryFilter) {
     this.setState({ clusteringRadar: [] });
-    
+
     clustering(dataA, dataB, categoryFilter).then((cData) => {
       this.setState({
         clusteringRadar: groupSimilar(generateAxisData(cData, dataA, dataB))
       });
     });
   }
-  
+
   sortTableCallBack(newTableData) {
     this.setState({
       radar: sortRadarAxisByTableData(this.state.radar, newTableData)
     })
   }
-  
+
   handleTableRowClick(data) {
     var profileNameA = this.state.table.diseaseAName,
         profileNameB = this.state.table.diseaseBName,
         leftData = [], rightData = [], classFilter;
-    
+
     this.setState({ tableSelect: data });
-    
+
     if(data === 'Overall') {
       leftData = this.state.classedPhenotypeA;
       rightData = this.state.classedPhenotypeB;
@@ -170,20 +183,20 @@ export default class RedOctopus extends Component {
       rightData = { [data]: this.state.classedPhenotypeB[data] };
       classFilter = data;
     }
-    
+
     this.updateTriptych(leftData, rightData, profileNameA, profileNameB);
     this.handleClustering(this.state.diseaseA, this.state.diseaseB, classFilter);
   }
-  
+
   render() {
     return (
       <div>
         <Header>
           <b>Monarch Disease Comparison</b>
-          
+
           <ButtonToolbar>
             <DropdownButton bsSize="small" title="Choose Dataset" id="diseasePairSelect">
-              <MenuItem eventKey="1" 
+              <MenuItem eventKey="1"
                 onClick={() => {this.updateVisualisation(dataAchondroplasia(), dataPseudoAchondroplasia())}}>
                 Achondroplasia / Pseudoachondroplasia
               </MenuItem>
@@ -198,48 +211,60 @@ export default class RedOctopus extends Component {
             </DropdownButton>
           </ButtonToolbar>
         </Header>
-        
+
         <Left>
-          <h4>{this.state.table.diseaseAName} / {this.state.table.diseaseBName}</h4>
-          {this.state.radar.length > 0 &&
-            <Radar 
-              data={this.state.radar} 
-              options={{
-                w: 360,
-                h: 360,
-                wrapWidth: 100,
-                labelFactor: 1.25,
-                dotRadius: 2.5,
-                strokeWidth: 1
-              }}
-            />
+          <h4>
+            <span style={{ backgroundColor: '#1f5bb4', color: 'white', padding: '8px 18px 8px 18px'}}>{this.state.table.diseaseAName}</span> 
+            <span style={{ padding: '0px 16px 0px 16px' }}>VS</span> 
+            <span style={{ backgroundColor: '#e80', color: 'white',  padding: '8px 18px 8px 18px'}}>{this.state.table.diseaseBName}</span>
+          </h4>
+          <br />
+          {this.state.tableSelect !== 'Overall' && <div>
+            {this.state.clusteringRadar.length > 0 ?
+              <div>
+                <h4>{ this.state.tableSelect }</h4>
+              <Radar
+                data={this.state.clusteringRadar}
+                options={{
+                  w: 360,
+                  h: 360,
+                  wrapWidth: 100,
+                  labelFactor: 1.25,
+                  dotRadius: 2.5,
+                  strokeWidth: 1
+                }}
+              /></div> :
+              <div>
+                <SpinningLogo glyph="refresh" /> Clustering...
+              </div>
+            }
+          </div>}
+          {this.state.radar.length && this.state.tableSelect === 'Overall' &&
+            <div>
+              <h4>{ this.state.tableSelect }</h4>
+              <Radar
+                data={this.state.radar}
+                options={{
+                  w: 360,
+                  h: 360,
+                  wrapWidth: 100,
+                  labelFactor: 1.25,
+                  dotRadius: 2.5,
+                  strokeWidth: 1
+                }}
+              />
+            </div>
           }
-                    
-          <TableDiseaseMatch 
+        </Left>
+        <Right>
+          <TableDiseaseMatch
             data={this.state.table}
             sortCallBack={this.sortTableCallBack}
             onRowClick={this.handleTableRowClick}
           />
-        </Left>
-        
-        <Right>
+          
+          <br />
           <h4>{ this.state.tableSelect }</h4>
-          {this.state.clusteringRadar.length > 0 ?
-            <Radar 
-              data={this.state.clusteringRadar} 
-              options={{
-                w: 360,
-                h: 360,
-                wrapWidth: 100,
-                labelFactor: 1.25,
-                dotRadius: 2.5,
-                strokeWidth: 1
-              }}
-            /> :
-            <div>
-              <SpinningLogo glyph="refresh" /> Clustering...
-            </div>
-          }
 
           {this.state.triptych.length > 0 ?
             <Triptych data={this.state.triptych}/> :
@@ -247,9 +272,9 @@ export default class RedOctopus extends Component {
               <SpinningLogo glyph="refresh" /> Loading Triptych Data...
             </div>
           }
-        </Right> 
+        </Right>
+
       </div>
     );
   }
 }
-

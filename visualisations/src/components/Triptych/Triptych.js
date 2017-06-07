@@ -13,10 +13,19 @@ const Base = styled.table`
     border: none;
     background: none;
     box-shadow: none;
+    margin-bottom: 0;
   }
 
   .progress-bar {
     background-image: none;
+    height: 16px;
+    font-size: 11px;
+    line-height: 1.6;
+    margin-top: 2px;
+  }
+
+  tr {
+    height: 40px;
   }
 `;
 
@@ -38,6 +47,7 @@ const Left = styled.td`
 const Middle = styled.td`
   text-align: center;
   font-size: 11px;
+  vertical-align: middle;
 `;
 
 const Right = styled.td`
@@ -64,16 +74,16 @@ export default function Triptych({data}) {
     <Base>
       <thead>
         <tr>
-          <Left style={{ paddingBottom: 18 }}>
+          <Left style={{ paddingBottom: 8 }}>
             <b>Searched Profile: <br />
               {Object.keys(data[0])[0]}</b>
           </Left>
 
-          <Middle style={{ paddingBottom: 18 }}>
+          <Middle style={{ paddingBottom: 8 }}>
             <b>SimScore</b>
           </Middle>
 
-          <Right style={{ paddingBottom: 18 }}>
+          <Right style={{ paddingBottom: 8 }}>
             <b>Matched Profile: <br />
               {Object.keys(data[0])[1]}</b>
           </Right>  
@@ -99,8 +109,15 @@ export default function Triptych({data}) {
                   placement="top"
                   overlay={
                     item.lcs ? (
-                    <Pop key={$index} title="Least Common Subsuming" id="triptych-pop-over">
-                      {`${item.lcs.label} (${item.lcs.informationContent})`}
+                    <Pop key={$index} id="triptych-pop-over">
+                      <p>
+                        <b>Similarity Score:</b> <br />
+                        {item.similarity} %
+                      </p>
+                      <p>
+                        <b>Exact match:</b> <br />
+                        {`${item.lcs.label} (${item.lcs.informationContent})`}
+                      </p>
                     </Pop>) : <Popover key={$index} id="triptych-pop-over" style={{ display: 'none' }} />
                   }
                 >
@@ -108,9 +125,9 @@ export default function Triptych({data}) {
                     <Radial
                       value={item.similarity}
                       thickness="1"
-                      scale="9"
+                      scale="6"
                       valueBarColor="#070"
-                      style={{ margin: '0px 20px 15px 20px' }}
+                      style={{ margin: '0px 20px 0px 20px' }}
                     />
                   </div>
                 </OverlayTrigger>
