@@ -122,6 +122,7 @@ export default class RedOctopus extends Component {
         countForRadar(radarAxis, dataA),
         countForRadar(radarAxis, dataB)
       ],
+      clusteringRadar: [],
       table: tableData,
       tableSelect: 'Overall',
       triptych: []
@@ -212,7 +213,12 @@ export default class RedOctopus extends Component {
         </Header>
 
         <Left>
-          <h4><span style={{ backgroundColor: '#1f5bb4', color: 'white'}}>{this.state.table.diseaseAName}</span> / <span style={{ backgroundColor: '#e80', color: 'white'}}>{this.state.table.diseaseBName}</span></h4>
+          <h4>
+            <span style={{ backgroundColor: '#1f5bb4', color: 'white', padding: '8px 18px 8px 18px'}}>{this.state.table.diseaseAName}</span> 
+            <span style={{ padding: '0px 16px 0px 16px' }}>VS</span> 
+            <span style={{ backgroundColor: '#e80', color: 'white',  padding: '8px 18px 8px 18px'}}>{this.state.table.diseaseBName}</span>
+          </h4>
+          <br />
           {this.state.tableSelect !== 'Overall' && <div>
             {this.state.clusteringRadar.length > 0 ?
               <div>
@@ -256,7 +262,8 @@ export default class RedOctopus extends Component {
             sortCallBack={this.sortTableCallBack}
             onRowClick={this.handleTableRowClick}
           />
-
+          
+          <br />
           <h4>{ this.state.tableSelect }</h4>
 
           {this.state.triptych.length > 0 ?

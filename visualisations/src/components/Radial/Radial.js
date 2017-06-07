@@ -14,6 +14,7 @@ const APosCircle = styled(Circle)`
 // Base is a opaque circle with a white circular mask in the middle
 const Base = styled(Circle)`
   font-size: ${props => props.scale}px;
+  font-weight: 700;
   position: relative;
   padding: 0;
   background-color: #F2E9E1; 
