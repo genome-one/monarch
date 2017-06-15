@@ -226,7 +226,7 @@ function radarChart(id, data, options) {
       .style("border", "1px solid #000")
       .style("border-radius","4px")
       .style("left", "-5000px")		
-      .style("top", "-5000px");	;
+      .style("top", "-5000px");
   
   //Wrapper for the invisible circles on top
   var blobCircleWrapper = g.selectAll(".radarCircleWrapper")

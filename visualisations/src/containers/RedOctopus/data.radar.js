@@ -1,7 +1,7 @@
 export function initRadarAxisData(classifications) {
   var cArr = [];
   classifications.forEach((item) => {
-    cArr.push({axis: item, value: 0})
+    cArr.push({axis: item, value: 0, list: []})
   })
 
   return cArr;
@@ -14,11 +14,12 @@ export function countForRadar(axis, data) {
       arr.forEach((item) => {
         if(item.axis === classification.name) {
           item.value++;
+          item.list.push(pheno.phenotype.name);
         }
       });
     });
   });
- 
+
   return arr;
 }
 

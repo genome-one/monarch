@@ -1,5 +1,5 @@
 export function initTriptychData(classedPhenoA, classedPhenoB, select) {
-  var selectedA = [], selectedB = []
+  var selectedA = [], selectedB = [];
   if(select) {
     selectedA = classedPhenoA[select];
     selectedB = classedPhenoB[select];
@@ -24,7 +24,7 @@ export function generateTriptychQueryString(selectedA, selectedB) {
   return qString;
 }
 
- export function processDataForTriptych(data, profileNameA, profileNameB, allDataA, allDataB) {
+ export function processDataForTriptych(data, profileNameA, profileNameB, allDataA, allDataB, radarData) {
   var newArr = [],
       maxMaxIC = data.results[0].system_stats.maxMaxIC;
   data.results[0].matches.forEach((match) => {
@@ -39,8 +39,11 @@ export function generateTriptychQueryString(selectedA, selectedB) {
   newArr.sort((a, b) => {
     return b.similarity - a.similarity;
   });
-
-  return includeUnmatch(newArr, profileNameA, profileNameB, allDataA, allDataB);
+   
+  newArr = includeUnmatch(newArr, profileNameA, profileNameB, allDataA, allDataB);
+  newArr = categoriseDataForTriptych(newArr, radarData);
+    
+  return newArr;
 }
  
 export function includeUnmatch(data, profileNameA, profileNameB, allDataA, allDataB) {
@@ -80,7 +83,35 @@ export function includeUnmatch(data, profileNameA, profileNameB, allDataA, allDa
   
   return newData;
 }
+
+export function categoriseDataForTriptych(triptychData, radarData) {
+  var newData = {};
+  radarData[0].forEach((item) => {
+    newData[item.axis] = [];
+  });
   
+  triptychData.forEach((item) => {
+    var itemHaveA = item[Object.keys(item)[0]],
+        itemNoA = item[Object.keys(item)[1]];
+     
+    if(itemHaveA.label !== "") {
+      radarData[0].forEach((rData) => {
+        rData.list.forEach((lItem) => {
+          if(lItem === itemHaveA.label) newData[rData.axis].push(item); 
+        })
+      });
+    } else {
+      radarData[1].forEach((rData) => {
+        rData.list.forEach((lItem) => {
+          if(lItem === itemNoA.label) newData[rData.axis].push(item); 
+        })
+      });
+    } 
+  });
+
+  return newData;
+}
+
 export function calSimScore(aIC, bIC, lcsIC, maxMaxIC ) {
   var distance = Math.sqrt(Math.pow(aIC - lcsIC, 2) 
       + Math.pow(bIC - lcsIC, 2)); 

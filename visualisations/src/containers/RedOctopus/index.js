@@ -68,7 +68,7 @@ const Right = styled.div`
   top: 60px;
   right: 0;
   overflow: auto;
-  padding: 24px 64px 24px 32px;
+  padding: 24px 16px 24px 16px;
   padding-bottom: 100px;
   height: 100%;
 `;
@@ -77,6 +77,21 @@ const SpinningLogo = styled(Glyphicon)`
   margin-right: 6px;
   -webkit-animation: spin 1000ms infinite linear;
   animation: spin 1000ms infinite linear;
+`;
+
+const TriptychSection = styled.div`
+  border-bottom: 1px solid #888;
+  display: flex;
+  align-items: center;
+  padding: 24px 0 24px 0;
+`;
+
+const TriptychCategory = styled.div`
+  width: 120px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: right;
+  float: left;
 `;
 
 export default class RedOctopus extends Component {
@@ -108,28 +123,28 @@ export default class RedOctopus extends Component {
     var classPhenotypeA = populateClassedPhenotype(classPhenoUnpopulated, dataA);
     var classPhenotypeB = populateClassedPhenotype(classPhenoUnpopulated, dataB);
     var radarAxis = initRadarAxisData(classifications);
+    var radarData = [
+          countForRadar(radarAxis, dataA),
+          countForRadar(radarAxis, dataB)
+        ];
     var tableData = initTableData(classifications);
     populateTableData(tableData, 'diseaseA', dataA);
     populateTableData(tableData, 'diseaseB', dataB);
-    // this.handleClustering(dataA, dataB);
-    this.updateTriptych(classPhenotypeA, classPhenotypeB, dataA.name, dataB.name);
+    this.updateTriptych(classPhenotypeA, classPhenotypeB, dataA.name, dataB.name, radarData);
     this.setState({
       diseaseA: dataA,
       diseaseB: dataB,
       classedPhenotypeA: classPhenotypeA,
       classedPhenotypeB: classPhenotypeB,
-      radar: [
-        countForRadar(radarAxis, dataA),
-        countForRadar(radarAxis, dataB)
-      ],
+      radar: radarData,
       clusteringRadar: [],
       table: tableData,
       tableSelect: 'Overall',
-      triptych: []
-    })
+      triptych: {}
+    });
   }
 
-  updateTriptych(classPhenotypeA, classPhenotypeB, profileNameA, profileNameB) {
+  updateTriptych(classPhenotypeA, classPhenotypeB, profileNameA, profileNameB, radarData) {
     this.setState({ triptych: [] });
 
     var preData = initTriptychData(classPhenotypeA, classPhenotypeB);
@@ -147,7 +162,7 @@ export default class RedOctopus extends Component {
         });
 
         this.setState({
-          triptych: processDataForTriptych(data, profileNameA, profileNameB, allPhenotypeA, allPhenotypeB)
+          triptych: processDataForTriptych(data, profileNameA, profileNameB, allPhenotypeA, allPhenotypeB, radarData)
         });
       });
   }
@@ -155,16 +170,27 @@ export default class RedOctopus extends Component {
   handleClustering(dataA, dataB, categoryFilter) {
     this.setState({ clusteringRadar: [] });
 
-    clustering(dataA, dataB, categoryFilter).then((cData) => {
+    return clustering(dataA, dataB, categoryFilter).then((cData) => {
+      var cRadarData = groupSimilar(generateAxisData(cData, dataA, dataB));
       this.setState({
-        clusteringRadar: groupSimilar(generateAxisData(cData, dataA, dataB))
+        clusteringRadar: cRadarData
       });
+      
+      return cRadarData;
     });
   }
 
   sortTableCallBack(newTableData) {
     this.setState({
       radar: sortRadarAxisByTableData(this.state.radar, newTableData)
+    }, () => {
+      this.updateTriptych(
+        this.state.classedPhenotypeA,
+        this.state.classedPhenotypeB,
+        this.state.diseaseA.name,
+        this.state.diseaseB.name,
+        this.state.radar
+      );
     })
   }
 
@@ -173,19 +199,28 @@ export default class RedOctopus extends Component {
         profileNameB = this.state.table.diseaseBName,
         leftData = [], rightData = [], classFilter;
 
-    this.setState({ tableSelect: data });
+    this.setState({
+      tableSelect: data,
+      triptych: {}
+    });
 
     if(data === 'Overall') {
       leftData = this.state.classedPhenotypeA;
       rightData = this.state.classedPhenotypeB;
+      this.updateTriptych(leftData, rightData, profileNameA, profileNameB, this.state.radar);
     } else {
       leftData = { [data]: this.state.classedPhenotypeA[data] };
       rightData = { [data]: this.state.classedPhenotypeB[data] };
       classFilter = data;
+      
+      var doClustering = new Promise((resolve, reject)=> {
+        resolve(this.handleClustering(this.state.diseaseA, this.state.diseaseB, classFilter));
+      });
+    
+      doClustering.then((cRadarData) => {
+        this.updateTriptych(leftData, rightData, profileNameA, profileNameB, cRadarData);
+      });
     }
-
-    this.updateTriptych(leftData, rightData, profileNameA, profileNameB);
-    this.handleClustering(this.state.diseaseA, this.state.diseaseB, classFilter);
   }
 
   render() {
@@ -265,12 +300,24 @@ export default class RedOctopus extends Component {
           
           <br />
           <h4>{ this.state.tableSelect }</h4>
-
-          {this.state.triptych.length > 0 ?
-            <Triptych data={this.state.triptych}/> :
+          {
+            Object.keys(this.state.triptych).length > 0 ?
+            <div>
+              {
+                 Object.keys(this.state.triptych).map((category, $index) => {
+                   return (
+                    <TriptychSection key={$index}>
+                      <TriptychCategory>{category}</TriptychCategory>
+                      <Triptych data={this.state.triptych[category]}/>
+                    </TriptychSection>
+                   )
+                 }) 
+              }
+            </div> :
             <div>
               <SpinningLogo glyph="refresh" /> Loading Triptych Data...
             </div>
+            
           }
         </Right>
 
